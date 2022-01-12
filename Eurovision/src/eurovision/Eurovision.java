@@ -5,7 +5,6 @@
  */
 package eurovision;
 
-
 import java.util.Scanner;
 
 /**
@@ -44,6 +43,29 @@ public class Eurovision {
                 int nota_posada = nota_random(concursant, i, notes_posades_X_pais);
                 pais[pais_seleccionat].punts = pais[pais_seleccionat].punts + nota_posada;
             }
+
+            //ordenar(pais);
+            System.out.println(pais[concursant].nom + " ha obtingut " + pais[concursant].punts + " punts.");
+        }
+        System.out.println("\n****** \nSense ordenar \n****** \n");
+
+        int i, j, aux;
+        String aux_n;
+        for (i = 0; i < pais.length - 1; i++) {
+            for (j = 0; j < pais.length - i - 1; j++) {
+                if (pais[j + 1].punts > pais[j].punts) {
+                    aux = pais[j + 1].punts;
+                    pais[j + 1].punts = pais[j].punts;
+                    pais[j].punts = aux;
+
+                    aux_n = pais[j + 1].nom;
+                    pais[j + 1].nom = pais[j].nom;
+                    pais[j].nom = aux_n;
+
+                }
+            }
+        }
+        for (int concursant = 0; concursant < pais.length; concursant++) {
             System.out.println(pais[concursant].nom + " ha obtingut " + pais[concursant].punts + " punts.");
         }
 
@@ -58,12 +80,14 @@ public class Eurovision {
         do {
             pais_random = (int) Math.floor(Math.random() * 25 + 1);
             if (pais_random != pais) {
+                for (int i = 0; i < 10; i++) {
+                    if (pais_random != paisos_votats[pais][posicio]) {
 
-                if (pais_random != paisos_votats[pais][posicio]) {
-
-                    numero_correcte = true;
-                    paisos_votats[pais][posicio] = pais_random;
+                        numero_correcte = true;
+                        paisos_votats[pais][posicio] = pais_random;
+                    }
                 }
+
             }
         } while (numero_correcte == false);
 
@@ -80,9 +104,10 @@ public class Eurovision {
 
         do {
             nota_random = (int) Math.floor(Math.random() * 9 + 1);
-            if (nota_random != notes_posades[pais][posicio]) {
-                numero_correcte = true;
-                notes_posades[pais][posicio] = nota_random;
+            for (int i = 0; i < 10; i++) {
+                if (nota_random != notes_posades[pais][posicio]) {
+                    numero_correcte = true;
+                    notes_posades[pais][posicio] = nota_random;
             }
         } while (numero_correcte == false);
 
@@ -99,9 +124,8 @@ public class Eurovision {
         return paisos_votats_X_pais;
     }
 
-    static int[][] ordenar(int[] array, String[]nom) {
+    /*static int[] ordenar(Pais[] array) {
         int i, j, aux;
-        String aux_n;
 
         for (i = 0; i < array.length - 1; i++) {
             for (j = 0; j < array.length - i - 1; j++) {
@@ -110,12 +134,10 @@ public class Eurovision {
                     array[j + 1] = array[j];
                     array[j] = aux;
 
-                    aux_n = nom[j + 1];
-                    nom[j + 1] = nom[j];
-                    nom[j] = aux_n;
                 }
             }
         }
-    }
-}
+        return result;
 
+    }*/
+}
