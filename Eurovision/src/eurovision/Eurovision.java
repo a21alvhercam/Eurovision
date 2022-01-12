@@ -49,6 +49,70 @@ public class Eurovision {
         }
         System.out.println("\n****** \nSense ordenar \n****** \n");
 
+        ordenar_y_pintar(pais);
+
+    }
+
+    //FUNCIÓ PER DEFINIR EL PAIS ALEATORI I QUE RETORNA EL PAIS DE FORMA NUMÈRICA
+    static int pais_random(int pais, int posicio, int[][] paisos_votats) {
+        final int LIMITRANNUMMAX = 25;
+        final int LIMITRANNUMMIN = 0;
+        final int RANG = LIMITRANNUMMAX - LIMITRANNUMMIN + 1;
+        
+        boolean numero_correcte = false;
+
+        int pais_random = 0;
+        do {
+            pais_random = (int)(Math.random() * RANG) + LIMITRANNUMMIN;;
+            if (pais_random != pais) {
+                for (int i = 0; i < 10; i++) {
+                    if (pais_random != paisos_votats[pais][posicio]) {
+
+                        numero_correcte = true;
+                        paisos_votats[pais][posicio] = pais_random;
+                    }
+                }
+
+            }
+        } while (numero_correcte == false);
+
+        return pais_random;
+
+    }
+
+    static int nota_random(int pais, int posicio, int[][] notes_posades) {
+        final int LIMITRANNUMMAX = 9;
+        final int LIMITRANNUMMIN = 0;
+        final int RANG = LIMITRANNUMMAX - LIMITRANNUMMIN + 1;
+        int result = 0;
+        int notes[] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 12};
+        boolean numero_correcte = false;
+        int nota_random;
+
+        do {
+            nota_random = (int)(Math.random() * RANG) + LIMITRANNUMMIN;
+            for (int i = 0; i < 10; i++) {
+                if (nota_random != notes_posades[pais][posicio]) {
+                    numero_correcte = true;
+                    notes_posades[pais][posicio] = nota_random;
+                }
+            }
+        } while (numero_correcte == false);
+
+        result = notes[nota_random];
+        return result;
+    }
+
+    static int[][] canviar_primera_array(int[][] paisos_votats_X_pais) {
+        for (int i = 0; i < paisos_votats_X_pais.length; i++) {
+            for (int j = 0; j < paisos_votats_X_pais[i].length; j++) {
+                paisos_votats_X_pais[0][j] = -1;
+            }
+        }
+        return paisos_votats_X_pais;
+    }
+
+    static Pais[] ordenar_y_pintar(Pais[] pais) {
         int i, j, aux;
         String aux_n;
         for (i = 0; i < pais.length - 1; i++) {
@@ -68,76 +132,6 @@ public class Eurovision {
         for (int concursant = 0; concursant < pais.length; concursant++) {
             System.out.println(pais[concursant].nom + " ha obtingut " + pais[concursant].punts + " punts.");
         }
-
+        return pais;
     }
-
-    //FUNCIÓ PER DEFINIR EL PAIS ALEATORI I QUE RETORNA EL PAIS DE FORMA NUMÈRICA
-    static int pais_random(int pais, int posicio, int[][] paisos_votats) {
-
-        boolean numero_correcte = false;
-
-        int pais_random = 0;
-        do {
-            pais_random = (int) Math.floor(Math.random() * 25 + 1);
-            if (pais_random != pais) {
-                for (int i = 0; i < 10; i++) {
-                    if (pais_random != paisos_votats[pais][posicio]) {
-
-                        numero_correcte = true;
-                        paisos_votats[pais][posicio] = pais_random;
-                    }
-                }
-
-            }
-        } while (numero_correcte == false);
-
-        return pais_random;
-
-    }
-
-    static int nota_random(int pais, int posicio, int[][] notes_posades) {
-
-        int result = 0;
-        int notes[] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 12};
-        boolean numero_correcte = false;
-        int nota_random;
-
-        do {
-            nota_random = (int) Math.floor(Math.random() * 9 + 1);
-            for (int i = 0; i < 10; i++) {
-                if (nota_random != notes_posades[pais][posicio]) {
-                    numero_correcte = true;
-                    notes_posades[pais][posicio] = nota_random;
-            }
-        } while (numero_correcte == false);
-
-        result = notes[nota_random];
-        return result;
-    }
-
-    static int[][] canviar_primera_array(int[][] paisos_votats_X_pais) {
-        for (int i = 0; i < paisos_votats_X_pais.length; i++) {
-            for (int j = 0; j < paisos_votats_X_pais[i].length; j++) {
-                paisos_votats_X_pais[0][j] = -1;
-            }
-        }
-        return paisos_votats_X_pais;
-    }
-
-    /*static int[] ordenar(Pais[] array) {
-        int i, j, aux;
-
-        for (i = 0; i < array.length - 1; i++) {
-            for (j = 0; j < array.length - i - 1; j++) {
-                if (array[j + 1] < array[j]) {
-                    aux = array[j + 1];
-                    array[j + 1] = array[j];
-                    array[j] = aux;
-
-                }
-            }
-        }
-        return result;
-
-    }*/
 }
