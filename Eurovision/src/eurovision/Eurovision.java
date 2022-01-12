@@ -21,7 +21,7 @@ class Pais {
 public class Eurovision {
 
     public static void main(String[] args) {
-        //CREEM SCANNER
+        //CREEM SCANNER 09909
         Scanner s = new Scanner(System.in);
         //CREEM LIMIT PER ALS PAISOS CONCURSANTS
         final int LIMIT_PAISOS = 26;
