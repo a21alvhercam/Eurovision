@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eurovision;
 
 import java.util.Scanner;
 
-/**
- *
- * @author ausias
- */
 class Pais {
 
     String nom;
@@ -20,7 +11,7 @@ class Pais {
 public class Eurovision {
 
     public static void main(String[] args) {
-        //CREEM SCANNER 
+        //CREEM SCANNER 5
         Scanner s = new Scanner(System.in);
         //CREEM LIMIT PER ALS PAISOS CONCURSANTS
         final int LIMIT_PAISOS = 26;
