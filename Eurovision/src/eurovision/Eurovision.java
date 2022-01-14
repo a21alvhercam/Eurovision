@@ -122,12 +122,13 @@ public class Eurovision {
 
     static void pintar(Pais[] pais) {
         for (int concursant = 0; concursant < (pais.length / 2); concursant++) {
-            if (concursant < 9) {
-                System.out.println((concursant + 1) + ".  " + pais[concursant].nom + "  " + pais[concursant].punts + "          " + (concursant + 14) + ".  " + pais[concursant + 13].nom + "  " + pais[concursant + 13].punts);
-            } else {
-                System.out.println((concursant + 1) + ". " + pais[concursant].nom + "  " + pais[concursant].punts + "          " + (concursant + 14) + ".  " + pais[concursant + 13].nom + "  " + pais[concursant + 13].punts);
+//           if (concursant < 9) {
+//                System.out.println((concursant + 1) + ".  " + pais[concursant].nom + "  " + pais[concursant].punts + "          " + (concursant + 14) + ".  " + pais[concursant + 13].nom + "  " + pais[concursant + 13].punts);
+//            } else {
+//                System.out.println((concursant + 1) + ". " + pais[concursant].nom + "  " + pais[concursant].punts + "          " + (concursant + 14) + ".  " + pais[concursant + 13].nom + "  " + pais[concursant + 13].punts);
+            System.out.printf("%3s %-20s %3s\n", (concursant+1),pais[concursant].nom , pais[concursant].punts);
 
-            }
+            
         }
     }
 }
