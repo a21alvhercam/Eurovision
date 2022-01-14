@@ -20,7 +20,7 @@ class Pais {
 public class Eurovision {
 
     public static void main(String[] args) {
-        //CREEM SCANNER 09909
+        //CREEM SCANNER 
         Scanner s = new Scanner(System.in);
         //CREEM LIMIT PER ALS PAISOS CONCURSANTS
         final int LIMIT_PAISOS = 26;
@@ -39,70 +39,64 @@ public class Eurovision {
         //FEM UN BUCLE PER A QUE CADA PAIS INTRODUEIXI NOTES
         for (int concursant = 0; concursant < pais.length; concursant++) {
             for (int i = 0; i < 10; i++) {
-                int pais_seleccionat = pais_random(concursant, i, paisos_votats_X_pais);
-                int nota_posada = nota_random(concursant, i, notes_posades_X_pais);
-                pais[pais_seleccionat].punts = pais[pais_seleccionat].punts + nota_posada;
+                int pais_seleccionat = pais_random(concursant, i, paisos_votats_X_pais); //FEM UNA FUNCIÓ PER A QUE EL PAIS QUE TOCA SELECCIONI UN PAIS DE FORMA ALEATORIA
+                int nota_posada = nota_random(concursant, i, notes_posades_X_pais); //FEM UNA FUNCIÓ PER A QUE EL PAIS QUE TOCA SELECCIONI UNA NOTA DE FORMA ALEATORIA
+                pais[pais_seleccionat].punts = pais[pais_seleccionat].punts + nota_posada; //FEM QUE EL PAIS QUE RETORNA LA PRIMERA FUNCIÓ SE LI SUMIN ELS PUNTS QUE RETORNA LA SEGONA FUNCIÓ
             }
 
-            //ordenar(pais);
-            System.out.println(pais[concursant].nom + " ha obtingut " + pais[concursant].punts + " punts.");
+            
         }
-        System.out.println("\n****** \nSense ordenar \n****** \n");
 
-        ordenar_y_pintar(pais);
+        ordenar_y_pintar(pais); //FEM UNA FUNCIÓ PER A QUE ORDENI SEGONS ELS PUNTS I HO PINTI
 
     }
 
     //FUNCIÓ PER DEFINIR EL PAIS ALEATORI I QUE RETORNA EL PAIS DE FORMA NUMÈRICA
     static int pais_random(int pais, int posicio, int[][] paisos_votats) {
-        final int LIMITRANNUMMAX = 25;
-        final int LIMITRANNUMMIN = 0;
-        final int RANG = LIMITRANNUMMAX - LIMITRANNUMMIN + 1;
-        
-        boolean numero_correcte = false;
-
-        int pais_random = 0;
+        boolean numero_correcte = false; //CREEM UN BOOLEÀ PER TRENCAR BUCLE
+        int pais_random = 0; //INICIALITZEM EL PAIS RANDOM QUE ÉS EL QUE ES RETORNARÀ
         do {
-            pais_random = (int)(Math.random() * RANG) + LIMITRANNUMMIN;;
-            if (pais_random != pais) {
-                for (int i = 0; i < 10; i++) {
-                    if (pais_random != paisos_votats[pais][posicio]) {
+            pais_random = num_random(0,25); //ASIGNEM EL VALOR ALEATORI
+            if (pais_random != pais) { //COMPROVEM QUE EL PAIS ALEATORI NO SIGUI EL MATEIX QUE EL CONCURSANT QUE ESTÀ VOTANT
+                for (int i = 0; i < 10; i++) { //FEM UN BUCLE DE 0 A 10 PER COMPROVAR QUE NO HA VOTAT AL PAIS RANDOM SELECCIONAT
+                    if (pais_random != paisos_votats[pais][i]) { //SI ES DIFERENT FUNCIONARÀ
 
                         numero_correcte = true;
-                        paisos_votats[pais][posicio] = pais_random;
+                        paisos_votats[pais][i] = pais_random;
                     }
                 }
 
             }
-        } while (numero_correcte == false);
-
+        } while (numero_correcte == false); //SI NO ES COMPLEIX L'IF NO ES TRENCARÀ EL BUCLE
         return pais_random;
-
     }
-
+    //FUNCIÓ PER DEFINIR LA NOTA DE MANERA ALEATORIA
     static int nota_random(int pais, int posicio, int[][] notes_posades) {
-        final int LIMITRANNUMMAX = 9;
-        final int LIMITRANNUMMIN = 0;
-        final int RANG = LIMITRANNUMMAX - LIMITRANNUMMIN + 1;
-        int result = 0;
-        int notes[] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 12};
-        boolean numero_correcte = false;
-        int nota_random;
-
+        int result = 0; //INICIALITZEM EL VALOR QUE RETORNAREM
+        int notes[] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 12}; //EMMAGATZAMEM LES NOTES POSIBLES A TREURE
+        //EL VALOR RANDOM ESTÀ ENTRE 0 I 9 PER DETERMINAR LA NOTA DINS DE LES POSICIONS DE L'ARRAY DE LA LINIA SUPERIOR
+        boolean numero_correcte = false; //INICIALITZEM UN BOOLEÀ PER TRENCAR EL DO-WHILE
+        int nota_random; //INICIALITZEM EL NUMERO RANDOM QUE ENS GENERARÀ
         do {
-            nota_random = (int)(Math.random() * RANG) + LIMITRANNUMMIN;
-            for (int i = 0; i < 10; i++) {
-                if (nota_random != notes_posades[pais][posicio]) {
+            nota_random = num_random(0,9); //ASSIGNEM EL VALOR ALEATORI
+            for (int i = 0; i < 10; i++) { //FEM UN BUCLE PER COMPROVAR QUE AQUESTA NOTA NO HA ESTAT POSADA ABANS
+                if (nota_random != notes_posades[pais][posicio]) { //SI LA POSICIÓ DE NOTA ÉS DIFERENT FUNCIONARÀ
                     numero_correcte = true;
                     notes_posades[pais][posicio] = nota_random;
                 }
             }
-        } while (numero_correcte == false);
-
-        result = notes[nota_random];
+        } while (numero_correcte == false); //ES REPETIRÀ EL BUCLE SI LA NOTA JA HA ESTAT POSADA ABANS
+        result = notes[nota_random]; //LI DONEM EL VALOR DE LA POSICIÓ ALEATORIA AL RESULT I EL TORNEM
         return result;
     }
-
+    static int num_random(int min, int max){
+        final int LIMITRANNUMMAX = max; //IGUAL QUE A LA FUNCIÓ ANTERIOR FEM UN NUM RANDOM
+        final int LIMITRANNUMMIN = min; //ESTABLIM ELS LIMITS
+        final int RANG = LIMITRANNUMMAX - LIMITRANNUMMIN + 1;
+        int num = (int) (Math.random() * RANG) + LIMITRANNUMMIN; //ASSIGNEM EL VALOR ALEATORI
+        return num;
+    }
+    
     static int[][] canviar_primera_array(int[][] paisos_votats_X_pais) {
         for (int i = 0; i < paisos_votats_X_pais.length; i++) {
             for (int j = 0; j < paisos_votats_X_pais[i].length; j++) {
@@ -112,7 +106,7 @@ public class Eurovision {
         return paisos_votats_X_pais;
     }
 
-    static Pais[] ordenar_y_pintar(Pais[] pais) {
+    static void ordenar_y_pintar(Pais[] pais) {
         int i, j, aux;
         String aux_n;
         for (i = 0; i < pais.length - 1; i++) {
@@ -129,9 +123,14 @@ public class Eurovision {
                 }
             }
         }
-        for (int concursant = 0; concursant < pais.length; concursant++) {
-            System.out.println(pais[concursant].nom + " ha obtingut " + pais[concursant].punts + " punts.");
+        for (int concursant = 0; concursant < (pais.length / 2); concursant++) {
+            if (concursant < 9) {
+                System.out.println((concursant + 1) + ".  " + pais[concursant].nom + "  " + pais[concursant].punts + "          " + (concursant + 14) + ".  " + pais[concursant+13].nom + "  " + pais[concursant+13].punts);
+            } else {
+                System.out.println((concursant + 1) + ". " + pais[concursant].nom + "  " + pais[concursant].punts + "          " + (concursant + 14) + ".  " + pais[concursant+13].nom + "  " + pais[concursant+13].punts);
+
+            }
         }
-        return pais;
+
     }
 }
