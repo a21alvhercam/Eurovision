@@ -36,19 +36,26 @@ public class Eurovision {
                 int pais_seleccionat = pais_random(concursant, i, paisos_votats_X_pais); //FEM UNA FUNCIÓ PER A QUE EL PAIS QUE TOCA SELECCIONI UN PAIS DE FORMA ALEATORIA
                 int nota_posada = nota_random(concursant, i, notes_posades_X_pais); //FEM UNA FUNCIÓ PER A QUE EL PAIS QUE TOCA SELECCIONI UNA NOTA DE FORMA ALEATORIA
                 afegir_nota(pais_seleccionat, nota_posada, pais);
-                
+
                 the_looser(notes_the_looser, pais_seleccionat);
                 if (nota_posada == 12) { //SI LA NOTA ÉS 12 FEM CRIDEM LA FUNCIÓ THE BEST
                     the_best(notes_the_best, pais_seleccionat);
                 }
             }
-
+            ordenar_pintar.puntuacio_pais(pais, paisos_votats_X_pais, notes_posades_X_pais, concursant);
+            ordenar_pintar.ordenar_pais(pais);
+            ordenar_pintar.puntuacio_general(pais); //PINTEM FORMATEJAT CRIDANT UNA ALTRA FUNCIÓ
         }
 
-        ordenar_y_pintar(pais, notes_the_best, notes_the_looser); //FEM UNA FUNCIÓ PER A QUE ORDENI SEGONS ELS PUNTS I HO PINTI
+        int guanyador = trobar_the_best(notes_the_best);
+        int perdedor = trobar_the_looser(notes_the_looser);
+        ordenar_pintar.puntuacio_general(pais); //PINTEM FORMATEJAT CRIDANT UNA ALTRA FUNCIÓ
+        ordenar_pintar.pintar_guanyador_the_best(notes_the_best, pais, guanyador);
+        ordenar_pintar.pintar_guanyador_the_looser(notes_the_looser, pais, perdedor);
 
     }
-    static int afegir_nota(int pais_seleccionat, int nota_posada, Pais[] pais){
+
+    static int afegir_nota(int pais_seleccionat, int nota_posada, Pais[] pais) {
         return pais[pais_seleccionat].punts = pais[pais_seleccionat].punts + nota_posada; //FEM QUE EL PAIS QUE RETORNA LA PRIMERA FUNCIÓ SE LI SUMIN ELS PUNTS QUE RETORNA LA SEGONA FUNCIÓ
     }
 
@@ -58,14 +65,18 @@ public class Eurovision {
         boolean numero_correcte = false; //CREEM UN BOOLEÀ PER TRENCAR BUCLE
         int pais_random = 0; //INICIALITZEM EL PAIS RANDOM QUE ÉS EL QUE ES RETORNARÀ
         do {
+            numero_correcte = true;
             pais_random = num_random(0, 25); //ASIGNEM EL VALOR ALEATORI
             if (pais_random != pais) { //COMPROVEM QUE EL PAIS ALEATORI NO SIGUI EL MATEIX QUE EL CONCURSANT QUE ESTÀ VOTANT
                 for (int i = 0; i < NUMERO_VOTS; i++) { //FEM UN BUCLE DE 0 A 10 PER COMPROVAR QUE NO HA VOTAT AL PAIS RANDOM SELECCIONAT
-                    if (pais_random != paisos_votats[pais][i]) { //SI ES DIFERENT FUNCIONARÀ
-                        numero_correcte = true;
-                        paisos_votats[pais][i] = pais_random;
+                    if (pais_random == paisos_votats[pais][i]) { //SI ES DIFERENT FUNCIONARÀ
+                        numero_correcte = false;
+                        
                     }
                 }
+            }
+            if (numero_correcte == true){
+                paisos_votats[pais][posicio] = pais_random;
             }
         } while (numero_correcte == false); //SI NO ES COMPLEIX L'IF NO ES TRENCARÀ EL BUCLE
         return pais_random;
@@ -80,12 +91,17 @@ public class Eurovision {
         boolean numero_correcte = false; //INICIALITZEM UN BOOLEÀ PER TRENCAR EL DO-WHILE
         int nota_random; //INICIALITZEM EL NUMERO RANDOM QUE ENS GENERARÀ
         do {
+            numero_correcte = true;
             nota_random = num_random(0, 9); //ASSIGNEM EL VALOR ALEATORI
             for (int i = 0; i < NUMERO_VOTS; i++) { //FEM UN BUCLE PER COMPROVAR QUE AQUESTA NOTA NO HA ESTAT POSADA ABANS
-                if (nota_random != notes_posades[pais][posicio]) { //SI LA POSICIÓ DE NOTA ÉS DIFERENT FUNCIONARÀ
-                    numero_correcte = true;
-                    notes_posades[pais][posicio] = nota_random;
+                if (notes[nota_random] == notes_posades[pais][i]) { //SI LA POSICIÓ DE NOTA ÉS DIFERENT FUNCIONARÀ
+                    numero_correcte = false;
+                    
                 }
+            }
+            if (numero_correcte == true){
+                notes_posades[pais][posicio] = notes[nota_random];
+                
             }
         } while (numero_correcte == false); //ES REPETIRÀ EL BUCLE SI LA NOTA JA HA ESTAT POSADA ABANS
         result = notes[nota_random]; //LI DONEM EL VALOR DE LA POSICIÓ ALEATORIA AL RESULT I EL TORNEM
@@ -122,31 +138,7 @@ public class Eurovision {
 
     //FUNCIO PER ORDENAR CADASCUNA DE LES LLISTES I PINTAR-LES DESPRÉS
     static void ordenar_y_pintar(Pais[] pais, int[] notes_the_best, int[] notes_the_looser) {
-        ordenar_pais(pais);
-        int guanyador = trobar_the_best(notes_the_best);
-        int perdedor = trobar_the_looser(notes_the_looser);
-        pintar_puntuacio_general(pais); //PINTEM FORMATEJAT CRIDANT UNA ALTRA FUNCIÓ
-        pintar_guanyador_the_best(notes_the_best, pais, guanyador);
-        pintar_guanyador_the_looser(notes_the_looser, pais, perdedor);
-    }
 
-    //FUNCIO PER ORDENAR LA PUNTUACIO UTILITZANT EL METODE BOMBOLLA
-    static void ordenar_pais(Pais[] pais) {
-        int i, j, aux;
-        String aux_n;
-        for (i = 0; i < pais.length - 1; i++) {
-            for (j = 0; j < pais.length - i - 1; j++) {
-                if (pais[j + 1].punts > pais[j].punts) {
-                    aux = pais[j + 1].punts;
-                    pais[j + 1].punts = pais[j].punts;
-                    pais[j].punts = aux;
-
-                    aux_n = pais[j + 1].nom;
-                    pais[j + 1].nom = pais[j].nom;
-                    pais[j].nom = aux_n;
-                }
-            }
-        }
     }
 
     //FUNCIO PER ORDENAR LA PUNTUACIO UTILITZANT EL METODE BOMBOLLA
@@ -174,24 +166,4 @@ public class Eurovision {
         return posicio_minim;
     }
 
-    static void pintar_puntuacio_general(Pais[] pais) {
-        for (int concursant = 0; concursant < (pais.length / 2); concursant++) { //FEM UN BUCLE DE 13 PER PINTAR EN DUES COLUMNES
-            //UTILITZEM EL PRINTF PER FORMATAR LA SORTIDA
-            System.out.printf("\n %3s %-20s %3s %10s %-20s %3s \n", (concursant + 1), pais[concursant].nom, pais[concursant].punts, (concursant + 14), pais[concursant + 13].nom, pais[concursant + 13].punts);
-
-        }
-        System.out.println("");
-
-    }
-
-    static void pintar_guanyador_the_best(int[] the_best, Pais[] pais, int guanyador) {
-        System.out.println("\nEl guanyador del premi TheBest és " + pais[guanyador].nom + " amb " + the_best[guanyador] + " vegades puntant 12.");
-
-    }
-
-    static void pintar_guanyador_the_looser(int[] the_looser, Pais[] pais, int perdedor) {
-
-        System.out.println("\nEl guanyador del premi TheLooser és " + pais[perdedor].nom + " amb " + the_looser[perdedor] + " vegades puntant 0.");
-
-    }
 }

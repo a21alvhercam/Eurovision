@@ -5,7 +5,6 @@
  */
 package eurovision;
 
-import eurovision.Eurovision;
 
 public class rellenar_paises {
 
