@@ -35,7 +35,17 @@ public class joc_proves {
     
     
     @Test
-    public void testNoms() {
+    public void rellenar_paises() {
+        System.out.println("Comprovant que tots els paisos tenen nom...");
+        
+    }
+    public void afegir_nota() {
+        System.out.println("Comprovant que s'afegeix les notes...");
+    }
+    public void pais_random() {
+        System.out.println("Comprovant que tots els paisos tenen nom...");
+    }
+    public void nota_random() {
         System.out.println("Comprovant que tots els paisos tenen nom...");
     }
 }

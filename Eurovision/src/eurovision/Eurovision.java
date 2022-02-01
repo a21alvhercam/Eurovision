@@ -12,6 +12,7 @@ class Pais {
 public class Eurovision {
 
     public static void main(String[] args) {
+        boolean expResult = false;
         //CREEM LIMIT PER ALS PAISOS CONCURSANTS
         final int LIMIT_PAISOS = 26;
         final int NUMERO_VOTS = 10;
@@ -24,7 +25,7 @@ public class Eurovision {
         //FEM UN BUCLE PER INTRODUIR ELS NOMS DELS PAISOS
         for (int i = 0; i < pais.length; i++) {
             pais[i] = new Pais();
-            pais[i].nom = rellenar_paises.omplir(); //FEM SERVIR DE MOMENT UNA FUNCIO PER OMPLIR ELS PAISOS AUTOMATICAMENT
+            pais[i].nom = rellenar_paises.omplir(i); //FEM SERVIR DE MOMENT UNA FUNCIO PER OMPLIR ELS PAISOS AUTOMATICAMENT
 
             pais[i].punts = 0;
         }

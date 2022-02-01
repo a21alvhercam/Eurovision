@@ -8,16 +8,13 @@ package eurovision;
 
 public class rellenar_paises {
 
-    static String omplir() {
-        String cadena = "";
-        for (int t = 0; t < 4; t++) {
-            char result = (char) Eurovision.num_random(65, 90);
-
-            cadena = cadena + Character.toString(result);
-
-        }
-
-        return cadena;
+    static String omplir(int numero) {
+    
+    String[] pais ={"The Netrherlands", "Italy", "Russia", "Switzerland", "Norway", "Sweden", "Azerbaijan", "North Macedonia", "Australia", "Iceland", "Czech Republic", "Denmark", "Slovenia", "France", "Cyprus", "Malta", "Serbia", "Albania", "Estonia", "San Marino", "Greece", "Spain", "Israel", "Germany", "Belarus", "United Kingdom"};        
+        return pais[numero];
+        
+        
 
     }
+
 }
