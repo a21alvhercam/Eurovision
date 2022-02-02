@@ -35,7 +35,7 @@ public class ordenar_pintar {
     static void puntuacio_general(Pais[] pais) {
         for (int concursant = 0; concursant < (pais.length / 2); concursant++) {
             //FEM UN BUCLE DE 13 PER PINTAR EN DUES COLUMNES
-            //UTILITZEM EL PRINTF PER FORMATAR LA SORTIDA
+            //UTILITZEM EL PRINTF PER FORMATAR LA SORTID
             System.out.printf("\n %3s %-20s %3s %10s %-20s %3s \n", concursant + 1, pais[concursant].nom, pais[concursant].punts, concursant + 14, pais[concursant + 13].nom, pais[concursant + 13].punts);
         }
         System.out.println("");

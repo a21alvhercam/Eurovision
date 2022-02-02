@@ -5,6 +5,8 @@
  */
 package joc_proves;
 //
+import eurovision.Eurovision;
+import eurovision.rellenar_paises;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,17 +37,20 @@ public class joc_proves {
     
     
     @Test
-    public void rellenar_paises() {
-        System.out.println("Comprovant que tots els paisos tenen nom...");
-        
-    }
+
     public void afegir_nota() {
         System.out.println("Comprovant que s'afegeix les notes...");
+    }
+    public void test_ordenacio() {
+        System.out.println("Comprovant que s'ordena correctament les notes...");
+        eurovision.ordenar_pintar instance = new eurovision.ordenar_pintar();
+        int [] array = {2,1,4,3,6,5,8,7,9,10,12,11,14,13,16,15,18,17,19,20,22,21,26,25,24,23};
+        int[] expResult = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26};
+        int[] result = instance.ordenar_pais(array);
+        assertEquals("Array ordenada", expResult, result);
     }
     public void pais_random() {
         System.out.println("Comprovant que tots els paisos tenen nom...");
     }
-    public void nota_random() {
-        System.out.println("Comprovant que tots els paisos tenen nom...");
-    }
+
 }
