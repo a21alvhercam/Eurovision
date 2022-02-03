@@ -1,4 +1,3 @@
-
 package eurovision;
 
 import Utils.utils;
@@ -25,9 +24,12 @@ public class notes {
                         numero_correcte = false;
                     }
                 }
-            }
-            if (numero_correcte == true) {
-                paisos_votats[pais][posicio] = pais_random;
+                if (numero_correcte == true) {
+                    paisos_votats[pais][posicio] = pais_random;
+                }
+
+            } else {
+                numero_correcte = false;
             }
         } while (numero_correcte == false); //SI NO ES COMPLEIX L'IF NO ES TRENCARÀ EL BUCLE
         return pais_random;
@@ -57,5 +59,5 @@ public class notes {
         result = notes[nota_random]; //LI DONEM EL VALOR DE LA POSICIÓ ALEATORIA AL RESULT I EL TORNEM
         return result;
     }
-    
+
 }
