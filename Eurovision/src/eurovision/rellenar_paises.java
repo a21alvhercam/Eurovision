@@ -9,7 +9,7 @@ public class rellenar_paises {
 
     static String omplir(int numero) {
 
-        String[] pais = {"The Netrherlands", "Italy", "Russia",
+        String[] pais = {"The Netherlands", "Italy", "Russia",
             "Switzerland", "Norway", "Sweden", "Azerbaijan",
             "North Macedonia", "Australia", "Iceland", "Czech Republic",
             "Denmark", "Slovenia", "France", "Cyprus", "Malta", "Serbia",
