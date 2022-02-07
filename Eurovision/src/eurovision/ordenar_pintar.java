@@ -4,7 +4,11 @@ package eurovision;
 
 public class ordenar_pintar {
 
-    //FUNCIO PER ORDENAR LA PUNTUACIO UTILITZANT EL METODE BOMBOLLA
+    /**
+     * 
+     * @param pais 
+     * FUNCIO PER ORDENAR LA PUNTUACIO UTILITZANT EL METODE BOMBOLLA
+     */
     static void ordenar_pais(Pais[] pais) {
         int i;
         int j;
@@ -23,15 +27,13 @@ public class ordenar_pintar {
             }
         }
     }
-
-    static void pintar_guanyador_the_best(int[] the_best, Pais[] pais, int guanyador) {
-        System.out.println("\nEl guanyador del premi TheBest \u00e9s " + pais[guanyador].nom + " amb " + the_best[guanyador] + " vegades puntant 12.");
-    }
-
-    static void pintar_guanyador_the_looser(int[] the_looser, Pais[] pais, int perdedor) {
-        System.out.println("\nEl guanyador del premi TheLooser \u00e9s " + pais[perdedor].nom + " amb " + the_looser[perdedor] + " vegades puntant 0.");
-    }
-
+    
+    
+    /**
+     * 
+     * @param pais 
+     * FUNCIO PER ORDENAR LA PUNTUACIO UTILITZANT EL METODE BOMBOLLA
+     */
     static void puntuacio_general(Pais[] pais) {
         for (int concursant = 0; concursant < (pais.length / 2); concursant++) {
             //FEM UN BUCLE DE 13 PER PINTAR EN DUES COLUMNES
@@ -40,7 +42,14 @@ public class ordenar_pintar {
         }
         System.out.println("");
     }
-
+    /**
+     * 
+     * @param pais
+     * @param paisos_votats
+     * @param notes_posades
+     * @param votant 
+     * ORDENEM TOTS EL VOTS DEL PAIS QUE ESTÀ VOTANT
+     */
     static void puntuacio_pais(Pais[] pais, int[][] paisos_votats, int[][] notes_posades, int votant) {
         int i, j, aux, aux_n;
         for (i = 0; i < notes_posades.length - 1; i++) {

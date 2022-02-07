@@ -6,7 +6,11 @@
 package eurovision;
 
 public class rellenar_paises {
-
+    /**
+     * 
+     * @param numero
+     * @return 
+     */
     static String omplir(int numero) {
 
         String[] pais = {"The Netherlands", "Italy", "Russia",

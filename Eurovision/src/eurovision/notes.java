@@ -3,12 +3,25 @@ package eurovision;
 import Utils.utils;
 
 public class notes {
-
+    /**
+     * 
+     * @param pais_seleccionat
+     * @param nota_posada
+     * @param pais
+     * @return 
+     */
     static int afegir_nota(int pais_seleccionat, int nota_posada, Pais[] pais) {
         return pais[pais_seleccionat].punts = pais[pais_seleccionat].punts + nota_posada; //FEM QUE EL PAIS QUE RETORNA LA PRIMERA FUNCIÓ SE LI SUMIN ELS PUNTS QUE RETORNA LA SEGONA FUNCIÓ
     }
 
-    //FUNCIÓ PER DEFINIR EL PAIS ALEATORI I QUE RETORNA EL PAIS DE FORMA NUMÈRICA
+    /**
+     * 
+     * @param pais
+     * @param posicio
+     * @param paisos_votats
+     * FUNCIÓ PER DEFINIR EL PAIS ALEATORI I QUE RETORNA EL PAIS DE FORMA NUMÈRICA
+     * @return 
+     */
     static int pais_random(int pais, int posicio, int[][] paisos_votats) {
         boolean numero_correcte = false; //CREEM UN BOOLEÀ PER TRENCAR BUCLE
         int pais_random = 0; //INICIALITZEM EL PAIS RANDOM QUE ÉS EL QUE ES RETORNARÀ
@@ -35,7 +48,14 @@ public class notes {
         return pais_random;
     }
 
-    //FUNCIÓ PER DEFINIR LA NOTA DE MANERA ALEATORIA
+    /**
+     * 
+     * @param pais
+     * @param posicio
+     * @param notes_posades
+     * FUNCIÓ PER DEFINIR LA NOTA DE MANERA ALEATORIA
+     * @return 
+     */
     static int nota_random(int pais, int posicio, int[][] notes_posades) {
         int result = 0; //INICIALITZEM EL VALOR QUE RETORNAREM
         int[] notes = {1, 2, 3, 4, 5, 6, 7, 8, 10, 12}; //EMMAGATZAMEM LES NOTES POSIBLES A TREURE

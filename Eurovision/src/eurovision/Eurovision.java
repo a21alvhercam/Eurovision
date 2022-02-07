@@ -9,12 +9,19 @@ class Pais {
     String nom;
     int punts;
 }
-
+/**
+ * 
+ * @author ausias
+ */
 public class Eurovision {
 
     public static final int NUMERO_VOTS = 10;
     public static final int LIMIT_PAISOS = 26;
-
+    
+    /**
+     * 
+     * @param args 
+     */
     public static void main(String[] args) {
         boolean salir = false;
         Pais[] pais = new Pais[LIMIT_PAISOS];//Puntuacion general y nombre del pais
@@ -70,7 +77,10 @@ public class Eurovision {
         } while (!salir());
 
     }
-
+    /**
+     * 
+     * @param temps 
+     */
     static void pausa(int temps) {
         try {
             Thread.sleep(temps);
@@ -78,7 +88,10 @@ public class Eurovision {
             Logger.getLogger(Eurovision.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * 
+     * @return 
+     */
     static boolean salir() {
         boolean sortida;
 
@@ -94,9 +107,14 @@ public class Eurovision {
 
         return sortida;
     }
-
-    //FUNCIÓ PER A QUE LA PRIMERA ARRAY DE LA MATRIU DELS PAISOS VOTATS TINGUI VALOR -1
-    //FET PER A QUE QUAN EL RANDOM SELECCIONI EL PAIS 0 NO EL DETECTI COM A PAIS VOTAT PREVIAMENT JA QUE S'INICIALITZEN ELS VECTORS A 0
+    /**
+     * 
+     * @param paisos_votats_X_pais
+     * FUNCIÓ PER A QUE LA PRIMERA ARRAY DE LA MATRIU DELS PAISOS VOTATS TINGUI VALOR -1
+     * FET PER A QUE QUAN EL RANDOM SELECCIONI EL PAIS 0 NO EL DETECTI COM A PAIS VOTAT PREVIAMENT JA QUE S'INICIALITZEN ELS VECTORS A 0
+     * @return 
+     */
+    //
     static int[][] reset_matrius(int[][] paisos_votats_X_pais) {
         for (int[] paisos_votats_X_pai : paisos_votats_X_pais) {
             for (int j = 0; j < paisos_votats_X_pai.length; j++) {

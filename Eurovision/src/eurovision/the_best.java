@@ -2,12 +2,23 @@ package eurovision;
 
 public class the_best {
 
-    //FUNCIÓ PER FER EL PREMI THEBEST
+    /**
+     * 
+     * @param notes_the_best
+     * @param pais
+     * @return 
+     * FUNCIÓ PER FER EL PREMI THEBEST
+     */
     static int the_best(int[] notes_the_best, int pais) {
         return notes_the_best[pais]++;
     }
 
-    //FUNCIO PER ORDENAR LA PUNTUACIO UTILITZANT EL METODE BOMBOLLA
+    /**
+     * 
+     * @param the_best
+     * @param pais 
+     * FUNCIO PER TROBAR AL PAIS AMB MÉS 12
+     */
     static void trobar_the_best(int[] the_best, Pais[] pais) {
         int puntuacio_maxim = -1;
         int posicio_maxim = 0;
@@ -32,7 +43,7 @@ public class the_best {
 
         }
 
-         System.out.print(" són els guanyadors del The Best.\n");
+         System.out.print(" són/és els guanyadors del The Best.\n");
 
     }
 

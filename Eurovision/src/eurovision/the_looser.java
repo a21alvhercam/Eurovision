@@ -3,11 +3,22 @@ package eurovision;
 
 
 public class the_looser {
-    
+    /**
+     * 
+     * @param notes_the_looser
+     * @param pais
+     * @return 
+     * CALCULEM EL PAIS QUE MENYS HA SORTIT
+     */
     static int the_looser(int[] notes_the_looser, int pais) {
         return notes_the_looser[pais]++;
     }
-
+    /**
+     * 
+     * @param the_looser
+     * @param pais 
+     * TROBEM AL PAIS QUE MENYS VEGADES HA SIGUT SELECCIONAT
+     */
     static void trobar_the_looser(int[] the_looser, Pais[] pais) {
         System.out.println("");
         int puntuacio_minim = 10000;
